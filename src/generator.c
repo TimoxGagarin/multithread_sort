@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
     {
         header.records[i].recno = i + 1;
         header.records[i].time_mark = 15020 + rand() % (60420 - 15020 + 1);
-        header.records[i].time_mark += 0.5 * ((rand() % 24) * 60 * 60 + (rand() % 60) * 60 + rand() % 60) / (12 * 60 * 60);
+        header.records[i].time_mark += ((rand() % 24) * 3600 + (rand() % 60) * 61) / (24 * 3600);
     }
 
     FILE *file = fopen(argv[2], "wb");
-    if (file == NULL)
+    if (!file)
         printf("File creating error: %s", argv[2]);
     else
     {
