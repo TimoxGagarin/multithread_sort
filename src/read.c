@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     }
 
     FILE *input = fopen(argv[1], "rb");
-    if (input == NULL)
+    if (!input)
     {
         fprintf(stderr, "File openning error: %s", argv[2]);
         exit(EXIT_FAILURE);
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     }
     fclose(input);
 
-    for (int i = 0; i < data->count; i++)
+    for (uint64_t i = 0; i < data->count; i++)
         printf("%lu %lf\n", data->records[i].recno, data->records[i].time_mark);
 
     free(data->records);
