@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     {
         header.records[i].recno = i + 1;
         header.records[i].time_mark = 15020 + rand() % (60420 - 15020 + 1);
-        header.records[i].time_mark += ((rand() % 24) * 3600 + (rand() % 60) * 61) / (24 * 3600);
+        header.records[i].time_mark += 1.0f * ((rand() % 24) * 3600 + (rand() % 60) * 61) / (24 * 3600);
     }
 
     FILE *file = fopen(argv[2], "wb");

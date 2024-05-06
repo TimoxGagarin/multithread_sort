@@ -8,18 +8,17 @@ int compare(const void *a, const void *b)
 
 int cpu_cores()
 {
-    FILE *file;
     char line[1024];
     int cpu_count = 0;
 
-    file = fopen("/proc/cpuinfo", "r");
-    if (file == NULL)
+    FILE *file = fopen("/proc/cpuinfo", "r");
+    if (!file)
     {
         perror("fopen");
         return -1;
     }
 
-    while (fgets(line, sizeof(line), file) != NULL)
+    while (fgets(line, sizeof(line), file))
         if (!strncmp(line, "processor", 9))
             cpu_count++;
 
@@ -49,6 +48,8 @@ void *sorting(void *_args)
             break;
         }
     }
+    // pthread_mutex_unlock(&mutex);
+    // pthread_barrier_wait(&barrier);
     merge(args);
 }
 
